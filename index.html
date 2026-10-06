@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Online Examination System – A comprehensive platform for students to take exams and admins to manage them." />
+  <title>ExamPro – Online Examination System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- =================== LANDING PAGE =================== -->
+<div id="page-landing" class="page active">
+  <nav class="navbar glass">
+    <div class="nav-brand">
+      <span class="brand-icon">⚡</span>
+      <span class="brand-name">ExamPro</span>
+    </div>
+    <div class="nav-links">
+      <button class="btn btn-ghost" onclick="showPage('page-login', 'student')">Student Login</button>
+      <button class="btn btn-ghost" onclick="showPage('page-login', 'admin')">Admin Login</button>
+      <button class="btn btn-primary" onclick="showPage('page-register')">Register</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🎓 Online Examination System</div>
+      <h1 class="hero-title">Smarter Exams,<br/><span class="gradient-text">Better Results</span></h1>
+      <p class="hero-subtitle">A modern platform for creating, conducting, and analyzing examinations. Empowering students and educators with real-time insights.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg" onclick="showPage('page-register')">Get Started Free</button>
+        <button class="btn btn-outline btn-lg" onclick="showPage('page-diagrams')">View System Diagrams</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card"><span class="stat-num">500+</span><span class="stat-label">Exams Conducted</span></div>
+        <div class="stat-card"><span class="stat-num">2K+</span><span class="stat-label">Students</span></div>
+        <div class="stat-card"><span class="stat-num">98%</span><span class="stat-label">Accuracy Rate</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-card card1 glass">
+        <div class="fc-icon">📝</div>
+        <div><strong>Math Exam</strong><br/><small>60 mins • 40 marks</small></div>
+      </div>
+      <div class="floating-card card2 glass">
+        <div class="fc-icon">✅</div>
+        <div><strong>Score: 92%</strong><br/><small>Excellent!</small></div>
+      </div>
+      <div class="floating-card card3 glass">
+        <div class="fc-icon">⏱️</div>
+        <div><strong>Timer Active</strong><br/><small>23:45 remaining</small></div>
+      </div>
+      <div class="floating-card card4 glass">
+        <div class="fc-icon">📊</div>
+        <div><strong>Analytics</strong><br/><small>Top Performer</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Everything You Need</h2>
+    <div class="features-grid">
+      <div class="feature-card glass">
+        <div class="feature-icon">🛡️</div>
+        <h3>Secure Login</h3>
+        <p>Role-based authentication for students and administrators with encrypted credentials.</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">⏰</div>
+        <h3>Auto Timer</h3>
+        <p>Real-time countdown timer with auto-submission when time expires. No cheating allowed.</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">📈</div>
+        <h3>Analytics</h3>
+        <p>Detailed performance analytics with grade distribution and progress tracking.</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">🎯</div>
+        <h3>MCQ & More</h3>
+        <p>Multiple choice questions with instant auto-grading and detailed answer review.</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">📋</div>
+        <h3>Admin Dashboard</h3>
+        <p>Full exam management: create, publish, monitor exams and generate reports.</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon">🏆</div>
+        <h3>Leaderboard</h3>
+        <p>Rank students by performance and celebrate top achievers.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =================== LOGIN PAGE =================== -->
+<div id="page-login" class="page">
+  <div class="auth-container">
+    <div class="auth-left">
+      <div class="auth-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-name">ExamPro</span>
+      </div>
+      <h2 class="auth-tagline">Your gateway to<br/><span class="gradient-text">smarter learning</span></h2>
+      <p>Log in to access your personalized examination portal and track your academic progress.</p>
+    </div>
+    <div class="auth-right glass">
+      <button class="btn btn-ghost back-btn" onclick="showPage('page-landing')">← Back</button>
+      <h2 class="auth-title" id="login-title">Student Login</h2>
+      <div class="role-tabs" id="login-role-tabs">
+        <button class="role-tab active" id="tab-student" onclick="switchLoginRole('student')">🎓 Student</button>
+        <button class="role-tab" id="tab-admin" onclick="switchLoginRole('admin')">🛡️ Admin</button>
+      </div>
+      <form class="auth-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="login-email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" required />
+        </div>
+        <div id="login-error" class="error-msg"></div>
+        <button type="submit" class="btn btn-primary btn-full">Login</button>
+        <p class="auth-link">Don't have an account? <a href="#" onclick="showPage('page-register')">Register here</a></p>
+        <p class="demo-hint">Demo: student@demo.com / student123 &nbsp;|&nbsp; admin@demo.com / admin123</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- =================== REGISTER PAGE =================== -->
+<div id="page-register" class="page">
+  <div class="auth-container">
+    <div class="auth-left">
+      <div class="auth-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-name">ExamPro</span>
+      </div>
+      <h2 class="auth-tagline">Join thousands of<br/><span class="gradient-text">exam takers</span></h2>
+      <p>Register today and start taking exams with confidence. Track your results in real-time.</p>
+    </div>
+    <div class="auth-right glass">
+      <button class="btn btn-ghost back-btn" onclick="showPage('page-landing')">← Back</button>
+      <h2 class="auth-title">Create Account</h2>
+      <form class="auth-form" onsubmit="handleRegister(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="reg-name" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label>Student ID</label>
+            <input type="text" id="reg-sid" placeholder="STU001" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="reg-email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Department</label>
+            <select id="reg-dept">
+              <option>Computer Science</option>
+              <option>Mathematics</option>
+              <option>Physics</option>
+              <option>Engineering</option>
+              <option>Commerce</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Course</label>
+            <select id="reg-course">
+              <option>B.Tech</option>
+              <option>B.Sc</option>
+              <option>MBA</option>
+              <option>MCA</option>
+              <option>B.Com</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="reg-password" placeholder="Min. 8 characters" required />
+        </div>
+        <div id="reg-error" class="error-msg"></div>
+        <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+        <p class="auth-link">Already have an account? <a href="#" onclick="showPage('page-login', 'student')">Login here</a></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- =================== STUDENT DASHBOARD =================== -->
+<div id="page-student" class="page">
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar glass" id="student-sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-name">ExamPro</span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" onclick="studentTab('dashboard')" id="snav-dashboard">
+          <span class="nav-icon">🏠</span> Dashboard
+        </button>
+        <button class="nav-item" onclick="studentTab('exams')" id="snav-exams">
+          <span class="nav-icon">📝</span> Available Exams
+        </button>
+        <button class="nav-item" onclick="studentTab('results')" id="snav-results">
+          <span class="nav-icon">📊</span> My Results
+        </button>
+        <button class="nav-item" onclick="studentTab('profile')" id="snav-profile">
+          <span class="nav-icon">👤</span> Profile
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-info" id="student-user-info"></div>
+        <button class="btn btn-ghost btn-full logout-btn" onclick="logout()">🚪 Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Student Dashboard Tab -->
+      <div id="stab-dashboard" class="tab-content active">
+        <div class="page-header">
+          <h1 id="student-welcome">Welcome back!</h1>
+          <p class="page-subtitle">Here's your academic overview</p>
+        </div>
+        <div class="stats-grid" id="student-stats"></div>
+        <div class="content-grid">
+          <div class="card glass">
+            <h3>📅 Upcoming Exams</h3>
+            <div id="upcoming-exams-list"></div>
+          </div>
+          <div class="card glass">
+            <h3>🏆 Recent Results</h3>
+            <div id="recent-results-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Available Exams Tab -->
+      <div id="stab-exams" class="tab-content">
+        <div class="page-header">
+          <h1>Available Exams</h1>
+          <p class="page-subtitle">Select an exam to begin</p>
+        </div>
+        <div class="exam-grid" id="exam-cards"></div>
+      </div>
+
+      <!-- Results Tab -->
+      <div id="stab-results" class="tab-content">
+        <div class="page-header">
+          <h1>My Results</h1>
+          <p class="page-subtitle">Your examination history and performance</p>
+        </div>
+        <div id="results-container"></div>
+      </div>
+
+      <!-- Profile Tab -->
+      <div id="stab-profile" class="tab-content">
+        <div class="page-header">
+          <h1>My Profile</h1>
+          <p class="page-subtitle">Manage your account details</p>
+        </div>
+        <div class="profile-layout">
+          <div class="card glass profile-card">
+            <div class="profile-avatar" id="profile-avatar-s"></div>
+            <div class="profile-details" id="profile-details-s"></div>
+          </div>
+          <div class="card glass performance-card">
+            <h3>📈 Performance Overview</h3>
+            <div id="performance-chart"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- =================== EXAM TAKING PAGE =================== -->
+<div id="page-exam" class="page">
+  <div class="exam-layout">
+    <header class="exam-header glass">
+      <div class="exam-title-area">
+        <h2 id="exam-current-title">Exam Title</h2>
+        <span id="exam-question-counter" class="question-counter">Q 1 / 10</span>
+      </div>
+      <div class="exam-timer-area">
+        <div class="timer glass" id="exam-timer">
+          <span class="timer-icon">⏱️</span>
+          <span id="timer-display">00:00</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="exam-body">
+      <div class="question-panel glass">
+        <div class="question-number" id="q-number">Question 1</div>
+        <p class="question-text" id="q-text">Loading question...</p>
+        <div class="options-grid" id="options-container"></div>
+      </div>
+
+      <div class="exam-sidebar glass">
+        <h4>Question Navigator</h4>
+        <div class="q-navigator" id="q-navigator"></div>
+        <div class="exam-legend">
+          <span class="legend-item"><span class="legend-dot answered"></span> Answered</span>
+          <span class="legend-item"><span class="legend-dot current"></span> Current</span>
+          <span class="legend-item"><span class="legend-dot unanswered"></span> Not Answered</span>
+        </div>
+        <button class="btn btn-danger btn-full" onclick="confirmSubmit()" id="submit-exam-btn">Submit Exam</button>
+      </div>
+    </div>
+
+    <div class="exam-nav-btns">
+      <button class="btn btn-outline" id="btn-prev" onclick="prevQuestion()">← Previous</button>
+      <button class="btn btn-primary" id="btn-next" onclick="nextQuestion()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== ADMIN DASHBOARD =================== -->
+<div id="page-admin" class="page">
+  <div class="dashboard-layout">
+    <aside class="sidebar glass">
+      <div class="sidebar-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-name">ExamPro</span>
+        <span class="admin-badge">ADMIN</span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" onclick="adminTab('dashboard')" id="anav-dashboard">
+          <span class="nav-icon">🏠</span> Dashboard
+        </button>
+        <button class="nav-item" onclick="adminTab('create-exam')" id="anav-create-exam">
+          <span class="nav-icon">➕</span> Create Exam
+        </button>
+        <button class="nav-item" onclick="adminTab('manage-exams')" id="anav-manage-exams">
+          <span class="nav-icon">📋</span> Manage Exams
+        </button>
+        <button class="nav-item" onclick="adminTab('results')" id="anav-results">
+          <span class="nav-icon">📊</span> Results & Reports
+        </button>
+        <button class="nav-item" onclick="adminTab('students')" id="anav-students">
+          <span class="nav-icon">👥</span> Students
+        </button>
+        <button class="nav-item" onclick="adminTab('diagrams')" id="anav-diagrams">
+          <span class="nav-icon">📐</span> System Diagrams
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="btn btn-ghost btn-full logout-btn" onclick="logout()">🚪 Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <!-- Admin Dashboard Tab -->
+      <div id="atab-dashboard" class="tab-content active">
+        <div class="page-header">
+          <h1>Admin Dashboard</h1>
+          <p class="page-subtitle">System overview and analytics</p>
+        </div>
+        <div class="stats-grid" id="admin-stats"></div>
+        <div class="content-grid">
+          <div class="card glass">
+            <h3>📋 Recent Exams</h3>
+            <div id="admin-recent-exams"></div>
+          </div>
+          <div class="card glass">
+            <h3>🏆 Top Students</h3>
+            <div id="admin-top-students"></div>
+          </div>
+        </div>
+        <div class="card glass" style="margin-top:1.5rem;">
+          <h3>📈 Grade Distribution</h3>
+          <div class="grade-bars" id="grade-bars"></div>
+        </div>
+      </div>
+
+      <!-- Create Exam Tab -->
+      <div id="atab-create-exam" class="tab-content">
+        <div class="page-header">
+          <h1>Create New Exam</h1>
+          <p class="page-subtitle">Set up exam details and add questions</p>
+        </div>
+        <div class="create-exam-form card glass">
+          <div class="form-section">
+            <h3>📋 Exam Details</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Exam Title</label>
+                <input type="text" id="new-exam-title" placeholder="e.g., Data Structures Final" />
+              </div>
+              <div class="form-group">
+                <label>Subject</label>
+                <input type="text" id="new-exam-subject" placeholder="e.g., Computer Science" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Duration (minutes)</label>
+                <input type="number" id="new-exam-duration" placeholder="60" min="5" max="180" />
+              </div>
+              <div class="form-group">
+                <label>Passing Marks (%)</label>
+                <input type="number" id="new-exam-passing" placeholder="60" min="1" max="100" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea id="new-exam-desc" placeholder="Brief description of this exam..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>❓ Add Questions</h3>
+            <div id="questions-builder">
+              <!-- Questions added dynamically -->
+            </div>
+            <button class="btn btn-outline" onclick="addQuestion()">+ Add Question</button>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-outline" onclick="saveExamDraft()">Save as Draft</button>
+            <button class="btn btn-primary" onclick="publishExam()">🚀 Publish Exam</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manage Exams Tab -->
+      <div id="atab-manage-exams" class="tab-content">
+        <div class="page-header">
+          <h1>Manage Exams</h1>
+          <p class="page-subtitle">View, edit and control all exams</p>
+        </div>
+        <div id="manage-exams-list"></div>
+      </div>
+
+      <!-- Results Tab -->
+      <div id="atab-results" class="tab-content">
+        <div class="page-header">
+          <h1>Results & Reports</h1>
+          <p class="page-subtitle">Comprehensive examination analytics</p>
+        </div>
+        <div id="admin-results-container"></div>
+      </div>
+
+      <!-- Students Tab -->
+      <div id="atab-students" class="tab-content">
+        <div class="page-header">
+          <h1>Student Management</h1>
+          <p class="page-subtitle">All registered students</p>
+        </div>
+        <div id="students-table-container"></div>
+      </div>
+
+      <!-- Diagrams Tab -->
+      <div id="atab-diagrams" class="tab-content">
+        <div class="page-header">
+          <h1>System Diagrams</h1>
+          <p class="page-subtitle">UML and System Design Diagrams</p>
+        </div>
+        <div class="diagrams-grid" id="admin-diagrams-grid"></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- =================== RESULT PAGE =================== -->
+<div id="page-result" class="page">
+  <div class="result-container">
+    <div class="result-card glass">
+      <div class="result-icon" id="result-icon">🏆</div>
+      <h2 id="result-exam-name">Exam Complete!</h2>
+      <div class="score-ring">
+        <svg viewBox="0 0 120 120" class="ring-svg">
+          <circle cx="60" cy="60" r="50" class="ring-bg"/>
+          <circle cx="60" cy="60" r="50" class="ring-progress" id="result-ring"/>
+        </svg>
+        <div class="score-text">
+          <span id="result-score-pct">0%</span>
+          <small>Score</small>
+        </div>
+      </div>
+      <div class="result-details">
+        <div class="result-stat"><span>✅ Correct</span><strong id="res-correct">0</strong></div>
+        <div class="result-stat"><span>❌ Wrong</span><strong id="res-wrong">0</strong></div>
+        <div class="result-stat"><span>⏭️ Skipped</span><strong id="res-skipped">0</strong></div>
+        <div class="result-stat"><span>🎖️ Grade</span><strong id="res-grade">-</strong></div>
+      </div>
+      <div id="result-status-msg" class="result-status"></div>
+      <div class="result-actions">
+        <button class="btn btn-outline" onclick="reviewAnswers()">📋 Review Answers</button>
+        <button class="btn btn-primary" onclick="studentTab('results'); showPage('page-student')">📊 View All Results</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== ANSWER REVIEW PAGE =================== -->
+<div id="page-review" class="page">
+  <div class="review-container">
+    <div class="page-header" style="margin-bottom:1.5rem;">
+      <h1>Answer Review</h1>
+      <button class="btn btn-outline" onclick="showPage('page-result')">← Back to Result</button>
+    </div>
+    <div id="review-list"></div>
+  </div>
+</div>
+
+<!-- =================== DIAGRAMS PAGE =================== -->
+<div id="page-diagrams" class="page">
+  <nav class="navbar glass">
+    <div class="nav-brand">
+      <span class="brand-icon">⚡</span>
+      <span class="brand-name">ExamPro</span>
+    </div>
+    <button class="btn btn-ghost" onclick="showPage('page-landing')">← Back to Home</button>
+  </nav>
+  <div class="diagrams-page-content">
+    <div class="page-header centered">
+      <h1>UML & System Diagrams</h1>
+      <p class="page-subtitle">Complete system design documentation for the Online Examination System</p>
+    </div>
+    <div class="diagrams-showcase" id="main-diagrams-grid"></div>
+  </div>
+</div>
+
+<!-- =================== MODAL =================== -->
+<div id="modal-overlay" class="modal-overlay" onclick="closeModal()">
+  <div class="modal glass" onclick="event.stopPropagation()" id="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
